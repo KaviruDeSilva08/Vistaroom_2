@@ -1,53 +1,47 @@
+// src/store/authStore.ts
 import { create } from 'zustand';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
+import { getDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebaseConfig'; // Ensure you export Firestore instance from firebase.ts
 import { AuthState, Designer } from '../types';
 
-// Mock designers data (would connect to a backend in production)
-const mockDesigners = [
-  {
-    id: '1',
-    username: 'sarah.designer',
-    password: 'FurnishPro2025!', // In a real app, this would be hashed and not stored client-side
-    name: 'Sarah Anderson',
-    email: 'sarah.anderson@furnishvision.com',
-  },
-  {
-    id: '2',
-    username: 'michael.designer',
-    password: 'DesignMaster2025!',
-    name: 'Michael Chen',
-    email: 'michael.chen@furnishvision.com',
-  },
-];
-
 export const useAuthStore = create<AuthState & {
-  login: (username: string, password: string) => Promise<boolean>;
-  logout: () => void;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
 }>((set) => ({
   designer: null,
   isAuthenticated: false,
-  
-  login: async (username: string, password: string) => {
-    // In a real app, this would make an API call to verify credentials
-    const designer = mockDesigners.find(
-      (d) => d.username === username && d.password === password
-    );
-    
-    if (designer) {
-      // Remove password before storing
-      const { password: _, ...designerData } = designer;
-      
+
+  login: async (email: string, password: string) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Fetch userName from Firestore
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      const userName = userDoc.exists() ? userDoc.data().userName : '';
+
       set({
-        designer: designerData as Designer,
+        designer: {
+          id: user.uid,
+          name: userName, // Use Firestore value
+          email: user.email || '',
+        } as Designer,
         isAuthenticated: true,
       });
-      
+
       return true;
+    } catch (error) {
+      console.error('Login error:', error);
+      return false;
     }
-    
-    return false;
   },
-  
-  logout: () => {
+
+  logout: async () => {
+    await signOut(auth);
     set({
       designer: null,
       isAuthenticated: false,

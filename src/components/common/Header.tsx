@@ -5,7 +5,7 @@ import Logo from './Logo';
 import { User } from 'lucide-react';
 
 const Header: React.FC = () => {
-  const { logout, currentUser } = useAuthStore();
+  const { logout, designer } = useAuthStore();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
             <div className="flex items-center space-x-2">
               <User className="h-5 w-5 text-gray-500" />
               <span className="text-sm font-medium text-gray-700">
-                {currentUser?.username || 'Guest'}
+                {designer?.name || 'Guest'}
               </span>
             </div>
             <button

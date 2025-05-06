@@ -10,16 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^9.99.0",
+    "@react-three/fiber": "^8.15.19",
+    "firebase": "^11.6.1",
+    "html-to-image": "^1.11.11",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.163.0",
-    "react-three-fiber": "^6.0.13",
-    "@react-three/drei": "^9.99.0",
-    "@react-three/fiber": "^8.15.19",
     "react-router-dom": "^6.22.3",
-    "zustand": "^4.5.2",
-    "html-to-image": "^1.11.11"
+    "react-three-fiber": "^6.0.13",
+    "three": "^0.163.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

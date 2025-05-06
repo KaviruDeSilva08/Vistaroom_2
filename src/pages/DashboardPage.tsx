@@ -62,9 +62,10 @@ const DashboardPage: React.FC = () => {
       {/* Duplicated Welcome and Summary Cards Section */}
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Welcome back, {designer?.name || 'Designer'}
-          </h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          Welcome back, {designer?.name || 'Designer'}
+        </h1>
+
           <p className="text-lg text-gray-500 mb-8">Manage your rooms and designs</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Total Rooms Card */}
