@@ -51,13 +51,13 @@ const LoginForm: React.FC = () => {
                 <User className="h-5 w-5 text-gray-400" />
               </div>
               <input
-                id="username"
-                name="username"
-                type="text"
-                autoComplete="username"
-                required
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required              
                 className="appearance-none rounded-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Username"
+                placeholder="Email"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -103,9 +103,9 @@ const LoginForm: React.FC = () => {
           </div>
           
           <div className="text-sm text-center">
-            <p className="text-gray-600">
+            {/* <p className="text-gray-600">
               Demo credentials: sarah.designer / FurnishPro2025!
-            </p>
+            </p> */}
           </div>
         </form>
       </div>
