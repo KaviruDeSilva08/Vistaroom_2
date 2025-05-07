@@ -40,7 +40,7 @@ const LoginForm: React.FC = () => {
             <Logo size="lg" className="text-indigo-600" />
           </div>
           <p className="text-center text-sm text-gray-600">
-            Sign in to access the design system
+            Login to access the design system
           </p>
         </div>
         
@@ -98,7 +98,7 @@ const LoginForm: React.FC = () => {
                 isLoading ? 'opacity-70 cursor-not-allowed' : ''
               }`}
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? 'Loging...' : 'Login'}
             </button>
           </div>
           
